@@ -10,5 +10,13 @@ const {ethereum} = isBrowser();
 
 if(ethereum){
     isBrowser().web3 = new Web3(ethereum);
-    isBrowser().web3 = new Web3(isBrowser().web3.currentProvider);
+    isBrowser().web3 = new Web3(isBrowser().web3.currentProvider)
 }
+
+const Address = "0x49091ef27c2fba692B27f3cC2874a89EA950854E";
+
+//contest
+
+//start election 
+
+//get all candidates
