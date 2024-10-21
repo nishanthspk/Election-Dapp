@@ -23,12 +23,14 @@ const requestAccount = async () => {
 
 // Contest Function
 export const contest = async ({ name }) => {
-    await requestAccount(); // Request access to the user's accounts
+    // await requestAccount(); // Request access to the user's accounts
 
+    // Correct conditional provider initialization
     const provider = window.ethereum 
         ? new ethers.providers.Web3Provider(window.ethereum) 
-        : ethers.getDefaultProvider();
-    
+        : ethers.getDefaultProvider(); 
+
+    // Ensure no syntax errors in the following lines
     const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
 
@@ -43,7 +45,7 @@ export const contest = async ({ name }) => {
 
 // Start Election Function
 export const startElection = async () => {
-    await requestAccount(); // Request access to the user's accounts
+    // await requestAccount(); // Request access to the user's accounts
 
     const provider = window.ethereum 
         ? new ethers.providers.Web3Provider(window.ethereum) 
@@ -81,7 +83,7 @@ export const getAllContestants = async () => { // Adjusted to match import
 
 // Vote Function
 export const vote = async ({ name }) => {
-    await requestAccount(); // Request access to the user's accounts
+    // await requestAccount(); // Request access to the user's accounts
 
     const provider = window.ethereum 
         ? new ethers.providers.Web3Provider(window.ethereum) 
@@ -119,7 +121,7 @@ export const getWinner = async () => {
 
 // End Election Function
 export const endElection = async () => {
-    await requestAccount(); // Request access to the user's accounts
+    // await requestAccount(); // Request access to the user's accounts
 
     const provider = window.ethereum 
         ? new ethers.providers.Web3Provider(window.ethereum) 
