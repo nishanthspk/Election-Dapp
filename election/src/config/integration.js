@@ -1,124 +1,87 @@
-import web3 from "web3";
-
+import Web3 from "web3";
 import abi from "./abi.json";
+import { ethers } from 'ethers';
 
-import {ethers} from "ethers";
+const isBrowser = () => typeof window !== "undefined";
 
-const isBroswer = () => typeof window !== "undefined";
+const { ethereum } = isBrowser() ? window : {};
 
-const {ethereum} = isBrowser();
-
-if(ethereum){
-    isBrowser().web3 = new Web3(ethereum);
-    isBrowser().web3 = new Web3(isBrowser().web3.currentProvider)
+if (ethereum) {
+    const web3Instance = new Web3(ethereum);
+    window.web3 = web3Instance; // Set Web3 instance in the browser's window object
+    web3Instance.setProvider(ethereum); // Use the current provider
 }
 
 const Address = "0x49091ef27c2fba692B27f3cC2874a89EA950854E";
 
-//contest
-
-export const contest =sync ({name}) => {
-//provider
-
-const provider = window.ethereum !=null ? new ethers.providers.Web3Provider(window.ethereum): ethers.provider.getDefaultProvider()
-//signer
-const signer = provider.getSigner();
-//contract instance
-const contractInstance = new ethers.Contract(Address,abi,signer);
-const response = await contractInstance.contest(name);
-console.log(response);
-return response;
-
-
-
+// Contest Function
+export const contest = async ({ name }) => {
+    const provider = window.ethereum 
+        ? new ethers.BrowserProvider(window.ethereum) 
+        : ethers.getDefaultProvider();
+    const signer = provider.getSigner();
+    const contractInstance = new ethers.Contract(Address, abi, signer);
+    const response = await contractInstance.contest(name);
+    console.log(response);
+    return response;
 }
 
-//start election 
-
-export const startElection =sync () => {
-    //provider
-    
-    const provider = window.ethereum !=null ? new ethers.providers.Web3Provider(window.ethereum): ethers.provider.getDefaultProvider()
-    //signer
+// Start Election Function
+export const startElection = async () => {
+    const provider = window.ethereum 
+        ? new ethers.BrowserProvider(window.ethereum) 
+        : ethers.getDefaultProvider();
     const signer = provider.getSigner();
-    //contract instance
-    const contractInstance = new ethers.Contract(Address,abi,signer);
+    const contractInstance = new ethers.Contract(Address, abi, signer);
     const response = await contractInstance.startElection();
     console.log(response);
     return response;
-    
-    
-    
-    }
+}
 
-//get all candidates
-
-export const getallContestants =sync () => {
-    //provider
-    
-    const provider = window.ethereum !=null ? new ethers.providers.Web3Provider(window.ethereum): ethers.provider.getDefaultProvider()
-    //signer
+// Get All Contestants Function
+export const getAllContestants = async () => {
+    const provider = window.ethereum 
+        ? new ethers.BrowserProvider(window.ethereum) 
+        : ethers.getDefaultProvider();
     const signer = provider.getSigner();
-    //contract instance
-    const contractInstance = new ethers.Contract(Address,abi,signer);
-    const response = await contractInstance.getallContestants();
+    const contractInstance = new ethers.Contract(Address, abi, signer);
+    const response = await contractInstance.getAllContestants(); // Use the correct function name
     console.log(response);
     return response;
-    
-    
-    
-    }
+}
 
-//vote for candidates
-
-export const vote =sync ({name}) => {
-    //provider
-    
-    const provider = window.ethereum !=null ? new ethers.providers.Web3Provider(window.ethereum): ethers.provider.getDefaultProvider()
-    //signer
+// Vote Function
+export const vote = async ({ name }) => {
+    const provider = window.ethereum 
+        ? new ethers.BrowserProvider(window.ethereum) 
+        : ethers.getDefaultProvider();
     const signer = provider.getSigner();
-    //contract instance
-    const contractInstance = new ethers.Contract(Address,abi,signer);
-    const response = await contractInstance.voteforCandidates(name);
+    const contractInstance = new ethers.Contract(Address, abi, signer);
+    const response = await contractInstance.voteForCandidates(name); // Use the correct function name
     console.log(response);
     return response;
-    
-    
-    
-    }
+}
 
-//get winner
-
-export const getWinner =sync ({}) => {
-    //provider
-    
-    const provider = window.ethereum !=null ? new ethers.providers.Web3Provider(window.ethereum): ethers.provider.getDefaultProvider()
-    //signer
+// Get Winner Function
+export const getWinner = async () => {
+    const provider = window.ethereum 
+        ? new ethers.BrowserProvider(window.ethereum) 
+        : ethers.getDefaultProvider();
     const signer = provider.getSigner();
-    //contract instance
-    const contractInstance = new ethers.Contract(Address,abi,signer);
+    const contractInstance = new ethers.Contract(Address, abi, signer);
     const response = await contractInstance.getWinner();
     console.log(response);
     return response;
-    
-    
-    
-    }
+}
 
-//end election
-
-export const endElection =sync () => {
-    //provider
-    
-    const provider = window.ethereum !=null ? new ethers.providers.Web3Provider(window.ethereum): ethers.provider.getDefaultProvider()
-    //signer
+// End Election Function
+export const endElection = async () => {
+    const provider = window.ethereum 
+        ? new ethers.BrowserProvider(window.ethereum) 
+        : ethers.getDefaultProvider();
     const signer = provider.getSigner();
-    //contract instance
-    const contractInstance = new ethers.Contract(Address,abi,signer);
+    const contractInstance = new ethers.Contract(Address, abi, signer);
     const response = await contractInstance.endElection();
     console.log(response);
     return response;
-    
-    
-    
-    }
+}

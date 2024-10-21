@@ -1,15 +1,13 @@
 import React from "react";
 import { useState } from "react";
-
-import { contest } from "../config/integration";
-
-const Contest = () => {
+import { vote } from "../config/integration";
+const Vote = () => {
   const [username, setUsername] = useState("");
 
   const handleSubmit = async () => {
     console.log("Submitted username:", username);
     // You can perform further actions here, such as sending the data to a backend server
-    const res = await contest({ name: username });
+    const res = await vote({ name: username });
 
     console.log(res);
   };
@@ -31,11 +29,11 @@ const Contest = () => {
           className="bg-blue-500 rounded-full border border-amber-700 text-white py-2 px-5 mt-4"
           onClick={handleSubmit}
         >
-          Contest
+          Vote
         </button>
       </div>
     </div>
   );
 };
 
-export default Contest;
+export default Vote;
