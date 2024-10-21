@@ -20,3 +20,5 @@ const Address = "0x49091ef27c2fba692B27f3cC2874a89EA950854E";
 //start election 
 
 //get all candidates
+
+//end election
