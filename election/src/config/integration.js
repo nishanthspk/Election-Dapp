@@ -20,7 +20,13 @@ const Address = "0x49091ef27c2fba692B27f3cC2874a89EA950854E";
 export const contest =sync ({name}) => {
 //provider
 
+const provider = window.ethereum !=null ? new ethers.providers.Web3Provider(window.ethereum): ethers.provider.getDefaultProvider()
 //signer
+const signer = provider.getSigner();
+const contractInstance = new ethers.Contract(Address,abi,signer);
+const response = await contractInstance.contest(name);
+console.log(response);
+return response;
 
 //contract instance
 
