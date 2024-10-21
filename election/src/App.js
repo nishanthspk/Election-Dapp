@@ -1,6 +1,7 @@
 
 import './App.css';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import Contest from "./Component/contest";
 
 function App() {
   return (
