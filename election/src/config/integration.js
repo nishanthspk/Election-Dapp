@@ -28,7 +28,7 @@ export const contest = async ({ name }) => {
     // Correct conditional provider initialization
     const provider = window.ethereum 
         ? new ethers.providers.Web3Provider(window.ethereum) 
-        : ethers.getDefaultProvider(); 
+        : ethers.getDefaultProvider();
 
     // Ensure no syntax errors in the following lines
     const signer = provider.getSigner(); // Get the signer
