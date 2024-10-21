@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Contest from "./Component/Contest";
+import Contest from "./Component/Contest"; 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Vote from "./Component/Vote";
 import { getAllContestants } from "./config/integration";
