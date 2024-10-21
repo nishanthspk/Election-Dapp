@@ -14,74 +14,125 @@ if (ethereum) {
 
 const Address = "0x49091ef27c2fba692B27f3cC2874a89EA950854E";
 
+// Function to request account access if needed
+const requestAccount = async () => {
+    if (window.ethereum) {
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+    }
+};
+
 // Contest Function
 export const contest = async ({ name }) => {
+    await requestAccount(); // Request access to the user's accounts
+
     const provider = window.ethereum 
-        ? new ethers.BrowserProvider(window.ethereum) 
+        ? new ethers.providers.Web3Provider(window.ethereum) 
         : ethers.getDefaultProvider();
-    const signer = provider.getSigner();
+    
+    const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
-    const response = await contractInstance.contest(name);
-    console.log(response);
-    return response;
+
+    try {
+        const response = await contractInstance.contest(name);
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error("Error sending transaction:", error);
+    }
 }
 
 // Start Election Function
 export const startElection = async () => {
+    await requestAccount(); // Request access to the user's accounts
+
     const provider = window.ethereum 
-        ? new ethers.BrowserProvider(window.ethereum) 
+        ? new ethers.providers.Web3Provider(window.ethereum) 
         : ethers.getDefaultProvider();
-    const signer = provider.getSigner();
+    
+    const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
-    const response = await contractInstance.startElection();
-    console.log(response);
-    return response;
+
+    try {
+        const response = await contractInstance.startElection();
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error("Error sending transaction:", error);
+    }
 }
 
 // Get All Contestants Function
-export const getAllContestants = async () => {
+export const getAllContestants = async () => { // Adjusted to match import
     const provider = window.ethereum 
-        ? new ethers.BrowserProvider(window.ethereum) 
+        ? new ethers.providers.Web3Provider(window.ethereum) 
         : ethers.getDefaultProvider();
-    const signer = provider.getSigner();
+
+    const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
-    const response = await contractInstance.getAllContestants(); // Use the correct function name
-    console.log(response);
-    return response;
+    
+    try {
+        const response = await contractInstance.getallContestants();
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error("Error fetching contestants:", error);
+    }
 }
 
 // Vote Function
 export const vote = async ({ name }) => {
+    await requestAccount(); // Request access to the user's accounts
+
     const provider = window.ethereum 
-        ? new ethers.BrowserProvider(window.ethereum) 
+        ? new ethers.providers.Web3Provider(window.ethereum) 
         : ethers.getDefaultProvider();
-    const signer = provider.getSigner();
+    
+    const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
-    const response = await contractInstance.voteForCandidates(name); // Use the correct function name
-    console.log(response);
-    return response;
+    
+    try {
+        const response = await contractInstance.voteforCandidates(name);
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error("Error sending vote:", error);
+    }
 }
 
 // Get Winner Function
 export const getWinner = async () => {
     const provider = window.ethereum 
-        ? new ethers.BrowserProvider(window.ethereum) 
+        ? new ethers.providers.Web3Provider(window.ethereum) 
         : ethers.getDefaultProvider();
-    const signer = provider.getSigner();
+    
+    const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
-    const response = await contractInstance.getWinner();
-    console.log(response);
-    return response;
+    
+    try {
+        const response = await contractInstance.getWinner();
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error("Error fetching winner:", error);
+    }
 }
 
 // End Election Function
 export const endElection = async () => {
+    await requestAccount(); // Request access to the user's accounts
+
     const provider = window.ethereum 
-        ? new ethers.BrowserProvider(window.ethereum) 
+        ? new ethers.providers.Web3Provider(window.ethereum) 
         : ethers.getDefaultProvider();
-    const signer = provider.getSigner();
+    
+    const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
-    const response = await contractInstance.endElection();
-    console.log(response);
-    return response;
+    
+    try {
+        const response = await contractInstance.endElection();
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.error("Error ending election:", error);
+    }
 }
