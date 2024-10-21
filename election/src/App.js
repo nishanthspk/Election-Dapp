@@ -5,7 +5,9 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 function App() {
   return (
     <div className="App">
-    
+    <div>
+    <ConnectButton />
+    </div>
       <h1 class="text-3xl font-bold underline">
     Hello world!
   </h1>

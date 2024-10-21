@@ -12,7 +12,7 @@ import {
 import { WagmiProvider } from 'wagmi';
 import {
   mainnet,
-  polygon,
+  sepolia,
   optimism,
   arbitrum,
   base,
@@ -26,7 +26,7 @@ import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 const config = getDefaultConfig({
   appName: 'My RainbowKit App',
   projectId: 'YOUR_PROJECT_ID',
-  chains: [mainnet, polygon, optimism, arbitrum, base],
+  chains: [mainnet, sepolia, optimism, arbitrum, base],
   ssr: true, // If your dApp uses server side rendering (SSR)
 });
 
