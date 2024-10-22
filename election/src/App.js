@@ -1,10 +1,37 @@
 import { useState } from "react";
 import "./App.css";
 import Contest from "./Component/Contest"; 
+import Button from "./Component/button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Vote from "./Component/Vote";
 import { getAllContestants } from "./config/integration";
 import { startElection,endElection,getWinner } from "./config/integration";
+
+import '@rainbow-me/rainbowkit/styles.css';
+
+import {
+  mainnet,
+  sepolia,
+  optimism,
+  arbitrum,
+  base,
+} from 'wagmi/chains';
+import {
+ 
+  QueryClient,
+} from "@tanstack/react-query";
+
+import { getDefaultConfig } from '@rainbow-me/rainbowkit';
+const config = getDefaultConfig({
+  appName: 'My RainbowKit App',
+  projectId: 'YOUR_PROJECT_ID',
+  chains: [mainnet, sepolia, optimism, arbitrum, base],
+  ssr: true, // If your dApp uses server side rendering (SSR)
+});
+
+
+
+const queryClient = new QueryClient();
 
 function App() {
 
@@ -15,9 +42,7 @@ function App() {
     console.log("Submitted ");
     // You can perform further actions here, such as sending the data to a backend server
      const res = await getAllContestants();
-
      console.log(res);
-
      setContestants(res);
   };
   const handleGetWinner = async () => {
@@ -44,7 +69,8 @@ function App() {
   return (
     <>
       <div className="flex justify-end">
-        <ConnectButton />
+        {/* <ConnectButton /> */}
+        <Button />
       </div>
       <Contest />
 

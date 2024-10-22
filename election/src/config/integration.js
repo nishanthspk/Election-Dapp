@@ -4,35 +4,32 @@ import { ethers } from 'ethers';
 
 const isBrowser = () => typeof window !== "undefined";
 
-const { ethereum } = isBrowser() ? window : {};
+const { ethereum } = isBrowser() ;
 
-if (ethereum) {
-    const web3Instance = new Web3(ethereum);
-    window.web3 = web3Instance; // Set Web3 instance in the browser's window object
-    web3Instance.setProvider(ethereum); // Use the current provider
-}
+
 
 const Address = "0x49091ef27c2fba692B27f3cC2874a89EA950854E";
 
-// Function to request account access if needed
-const requestAccount = async () => {
-    if (window.ethereum) {
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-    }
-};
+if (ethereum) {
+    isBrowser().web3 = new Web3(ethereum); 
+    isBrowser().web3 = new Web3(isBrowser().web3.currentProvider);
+  }
 
 // Contest Function
 export const contest = async ({ name }) => {
     // await requestAccount(); // Request access to the user's accounts
 
     // Correct conditional provider initialization
-    const provider = window.ethereum 
-        ? new ethers.providers.Web3Provider(window.ethereum) 
-        : ethers.getDefaultProvider();
+    const provider = 
+        window.ethereum != null
+          ? new ethers.providers.Web3Provider(window.ethereum)
+          : ethers.providers.getDefaultProvider();
 
+          console.log(provider);
     // Ensure no syntax errors in the following lines
     const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
+    console.log(signer);
 
     try {
         const response = await contractInstance.contest(name);
@@ -47,12 +44,14 @@ export const contest = async ({ name }) => {
 export const startElection = async () => {
     // await requestAccount(); // Request access to the user's accounts
 
-    const provider = window.ethereum 
-        ? new ethers.providers.Web3Provider(window.ethereum) 
-        : ethers.getDefaultProvider();
+    const provider = 
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
     
     const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
+    console.log(signer);
 
     try {
         const response = await contractInstance.startElection();
@@ -65,9 +64,10 @@ export const startElection = async () => {
 
 // Get All Contestants Function
 export const getAllContestants = async () => { // Adjusted to match import
-    const provider = window.ethereum 
-        ? new ethers.providers.Web3Provider(window.ethereum) 
-        : ethers.getDefaultProvider();
+    const provider = 
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
 
     const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
@@ -85,9 +85,10 @@ export const getAllContestants = async () => { // Adjusted to match import
 export const vote = async ({ name }) => {
     // await requestAccount(); // Request access to the user's accounts
 
-    const provider = window.ethereum 
-        ? new ethers.providers.Web3Provider(window.ethereum) 
-        : ethers.getDefaultProvider();
+    const provider = 
+    window.ethereum != null
+      ? new ethers.providers.Web3Provider(window.ethereum)
+      : ethers.providers.getDefaultProvider();
     
     const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
@@ -103,9 +104,10 @@ export const vote = async ({ name }) => {
 
 // Get Winner Function
 export const getWinner = async () => {
-    const provider = window.ethereum 
-        ? new ethers.providers.Web3Provider(window.ethereum) 
-        : ethers.getDefaultProvider();
+    const provider = 
+        window.ethereum != null
+          ? new ethers.providers.Web3Provider(window.ethereum)
+          : ethers.providers.getDefaultProvider();
     
     const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
@@ -123,9 +125,10 @@ export const getWinner = async () => {
 export const endElection = async () => {
     // await requestAccount(); // Request access to the user's accounts
 
-    const provider = window.ethereum 
-        ? new ethers.providers.Web3Provider(window.ethereum) 
-        : ethers.getDefaultProvider();
+    const provider = 
+        window.ethereum != null
+          ? new ethers.providers.Web3Provider(window.ethereum)
+          : ethers.providers.getDefaultProvider();
     
     const signer = provider.getSigner(); // Get the signer
     const contractInstance = new ethers.Contract(Address, abi, signer);
