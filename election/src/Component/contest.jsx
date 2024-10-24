@@ -1,15 +1,13 @@
 import React from "react";
 import { useState } from "react";
-
-import { contest } from "../config/integration";
+import { CONTESTANTNAME } from "../config/integration";
 
 const Contest = () => {
   const [name, setName] = useState("");
-
   const handleSubmit = async () => {
     console.log("Submitted username:", name);
     // You can perform further actions here, such as sending the data to a backend server
-    const res = await contest({ name: name });
+    const res = await CONTESTANTNAME({ name });
 
     console.log(res);
   };
