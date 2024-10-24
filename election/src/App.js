@@ -69,7 +69,7 @@ function App() {
         >
         Show contestants
         </button>
-        </div>
+      </div>
 
 
         <div className="mt-4">
