@@ -30,7 +30,7 @@ const Vote = () => {
     console.log(res);
   };
   return (
-    <div className="flex justify-center items-center mt-10">
+    <div className="flex  mt-10">
       <div className="w-72">
         {/* <div className="relative w-full min-w-[200px] h-10">
           <input
