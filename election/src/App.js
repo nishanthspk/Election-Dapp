@@ -68,7 +68,7 @@ function App() {
           onClick={getAllContestants}
         >
         Show contestants
-        </button>
+      </button>
       </div>
 
 
