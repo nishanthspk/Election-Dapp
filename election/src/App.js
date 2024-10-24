@@ -43,7 +43,7 @@ function App() {
       </div>
       <Contest />
 
-      <div className="flex ">
+      <div className="flex pt-8 pl-10">
 
       <button
           className="bg-blue-500 rounded-full border  border-amber-700 text-white py-2 px-5 mt-4"
