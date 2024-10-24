@@ -69,9 +69,6 @@ function App() {
         >
         Show contestants
         </button>
-
-   
-
         </div>
 
 
