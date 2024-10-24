@@ -39,7 +39,7 @@ function App() {
     <>
     <div className="bg-violet-200 h-screen">
       <div className="flex justify-end pt">
-        {/* <ConnectButton /> */}
+       
         <ConnectButton />
       </div>
       <Contest />
