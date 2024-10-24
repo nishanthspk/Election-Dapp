@@ -37,7 +37,7 @@ function App() {
   return (
     <>
     <div className="bg-violet-200 h-screen">
-      <div className="flex justify-end pt">
+      <div className="flex justify-end pt-3 pr-3">
        
         <ConnectButton />
       </div>
