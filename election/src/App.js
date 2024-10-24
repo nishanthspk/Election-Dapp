@@ -53,7 +53,7 @@ function App() {
         </button>
       </div>
       <Vote />
-      <div className="flex ">
+      <div className="flex mt-5 pl-10">
       <button
           className="bg-blue-500 rounded-full border border-amber-700 text-white py-2 px-5 mt-4"
           onClick={endElection}
