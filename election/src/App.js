@@ -37,8 +37,8 @@ function App() {
 
   return (
     <>
-    <div >
-      <div className="flex justify-end">
+    <div className="bg-violet-200 h-screen">
+      <div className="flex justify-end pt">
         {/* <ConnectButton /> */}
         <ConnectButton />
       </div>
