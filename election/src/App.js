@@ -34,7 +34,6 @@ function App() {
   }
   
   
-
   return (
     <>
     <div className="bg-violet-200 h-screen">
